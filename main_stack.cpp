@@ -1,28 +1,41 @@
 #include <iostream>
 #include "stack_func.h"
-#include <new>
+#include <fstream>
 using namespace std;
-
+void test_stack()
+{
+    Stack q;
+    q.top=NULL;
+    ifstream fin("test.in");
+    ofstream fout("test.out");
+    char a;
+    int number;
+    fin>>a;
+    while(!fin.eof())
+    {
+        switch (a)
+        {
+        case 'i':
+            fin>>number;
+            push(q,number);
+            break;
+        case 'o':
+          if ( !isNonempty(q))fout<<"error"<<" ";
+          else fout<<pop(q)<<" ";
+            break;
+        }
+        fin>>a;
+    }
+    if ( isNonempty(q))fout<<"nonempty"<<" ";
+    clear(q);
+    if ( isNonempty(q))fout<<"nonempty"<<" ";
+    else fout<<"empty";
+}
 
 int main()
 {
     Stack q;
     q.top=NULL;
-    push(q,1);
-    push(q,2);
-    if ( isEmpty(q))cout<<"Стек не пуст"<<endl;
-    else cout<<"Стек пуст"<<endl;
-    onTop(q);
-    push(q,3);
-    clear(q);
-    cout<<"После очистки :"<<endl;
-    if ( isEmpty(q))cout<<"Стек не пуст"<<endl;
-    else cout<<"Стек пуст"<<endl;
-    push(q,4);
-    cout<<pop(q)<<endl;
-    cout<<pop(q)<<endl;
-    cout<<pop(q)<<endl;
-    cout<<pop(q)<<endl;
-
-     return 0;
+    test_stack();
+    return 0;
 }
