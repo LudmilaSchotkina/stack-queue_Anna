@@ -39,16 +39,17 @@ void clear(Stack &q)
         p= q.top;
         q.top = q.top->link;
         p->data=0;
+        p->link=NULL;
         delete p;
         p = NULL;
     }
 }
-int onTop(Stack &q)
+int onTop(Stack q)
 {
     if(q.top) return q.top->data;
     else return -1;
 }
-bool isEmpty(Stack &q)
+bool isNonempty(Stack q)
 {
     if(q.top) return true;
     else return false;
