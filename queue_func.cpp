@@ -43,7 +43,7 @@ int on_Back(Queue &q)
     if (q.end)return q.end->data;
     else return -1;
 }
-bool isEmpty(Queue &q)
+bool isNonempty(Queue q)
 {
     if(q.beg!=0 && q.end!=0) return true;
     else return false;
