@@ -12,8 +12,8 @@ struct Queue
 };
 bool enqueue( Queue &q, int dt);
 int dequeue(Queue &q);
-int on_Front(Queue &q);
-int on_Back(Queue &q);
-bool isEmpty(Queue &q);
+int on_Front(Queue q);
+int on_Back(Queue q);
+bool isNonempty(Queue q);
 void clear(Queue &q);
 #endif
