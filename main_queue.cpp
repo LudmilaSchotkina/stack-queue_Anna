@@ -1,32 +1,40 @@
 #include <iostream>
+#include <fstream>
 #include "queue_func.h"
 using namespace std;
-int main()
+void test_queue()
 {
     Queue q;
     q.beg=NULL;
     q.end=NULL;
-    enqueue(q,1);
-    enqueue(q,2);
-    cout<<"До очистки : ";// внесли 2 элемента
-    if ( isEmpty(q))cout<<"Очередь не пуста"<<endl;
-    else cout<<"Очередь пуста"<<endl;
+    ifstream fin("test.in");
+    ofstream fout("test.out");
+    char a;
+    int number;
+    fin>>a;
+    while(!fin.eof())
+    {
+        switch (a)
+        {
+        case 'i':
+            fin>>number;
+            enqueue(q,number);
+            break;
+        case 'o':
+          if (!isNonempty(q))fout<<"error"<<" ";
+          else fout<<dequeue(q)<<" ";
+            break;
+        }
+        fin>>a;
+    }
+    if (!isNonempty(q))fout<<"nonempty"<<" ";
     clear(q);
-    cout<<"После очистки: ";
-    if (isEmpty(q))cout<<"Очередь не пуста"<<endl;
-    else cout<<"Очередь пуста"<<endl;
-    enqueue(q,3);
-    enqueue(q,4);
-    cout<<dequeue(q)<<endl;
-    cout<<dequeue(q)<<endl;
-    enqueue(q,5);
-    cout<<dequeue(q)<<endl;
-    cout<<dequeue(q)<<endl;
-    cout<<dequeue(q)<<endl;
-    cout<<dequeue(q)<<endl;
-
-
+    if (!isNonempty(q))fout<<"nonempty"<<" ";
+    else fout<<"empty";
+}
+int main()
+{
+    test_queue();
     return 0;
 }
-
 
